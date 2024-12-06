@@ -79,7 +79,7 @@ To use a predefined terrain model:
 
    Smooth the image (via a Python script or interpolation during export) and convert it to a DAE file. A conversion tool such as [ImageToSTL](https://imagetostl.com/convert/file/png/to/dae#convert) can be used.
 
-   <img src="/home/lsh/UbExpend/catkin_ws/github_source/carsim_ws/fig/DAE.png" alt="DAE" style="zoom: 33%;" />
+   <img src="fig/DAE.png" alt="DAE" style="zoom: 33%;" />
 
 3. **Replace the Existing Model**
 
