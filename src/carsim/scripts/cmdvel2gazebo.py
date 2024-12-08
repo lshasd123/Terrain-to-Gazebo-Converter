@@ -34,7 +34,7 @@ class CmdVel2Gazebo:
         self.T_rear = 0.18 
         
         # car max vel(m/s)
-        self.maxvel = 1.5
+        self.maxvel = 5.0
 
         # how many seconds delay for the dead man's switch
         self.timeout=rospy.Duration.from_sec(0.2)

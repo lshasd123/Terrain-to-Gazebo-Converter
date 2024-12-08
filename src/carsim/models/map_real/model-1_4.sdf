@@ -8,7 +8,7 @@
         <geometry>
           <mesh>
             <uri>model://map_real/meshes/map_real.dae</uri>
-            <scale>1.0 1.0 1.0</scale>
+            <scale>0.6 0.6 0.1</scale>
           </mesh>
         </geometry>
       </collision>
@@ -16,7 +16,7 @@
         <geometry>
           <mesh>
             <uri>model://map_real/meshes/map_real.dae</uri>
-            <scale>1.0 1.0 1.0</scale>
+            <scale>0.6 0.6 0.1</scale>
           </mesh>
         </geometry>
         <material>
@@ -30,14 +30,21 @@
       <surface> 
         <friction>
           <ode>
-              <mu>99999999.0</mu>
-              <mu2>99999999.0</mu2>
-              <fdir1>0 0 0</fdir1>
-              <slip1>0</slip1>
-              <slip2>0</slip2>
+              <mu>1.0</mu>
+              <mu2>1.0</mu2>
           </ode>
         </friction>
       </surface>
+        <contact>
+          <ode>
+            <soft_cfm>0.01</soft_cfm> <!-- 软约束参数 -->
+            <soft_erp>0.8</soft_erp> <!-- 弹性恢复参数 -->
+            <kp>100000</kp> <!-- 刚度系数 -->
+            <kd>1</kd> <!-- 阻尼系数 -->
+            <max_vel>0.01</max_vel> <!-- 最大接触速度 -->
+            <min_depth>0.001</min_depth> <!-- 最小接触深度 -->
+          </ode>
+        </contact>
     </link>
 
 
