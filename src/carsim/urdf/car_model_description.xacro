@@ -20,7 +20,7 @@
             <geometry>
                 <mesh filename="package://carsim/meshes/tank.STL" scale="0.0025 0.0025 0.0025"  />
             </geometry>
-            <origin xyz="0 0 0" rpy="-3.1416 0 1.5708" />
+            <origin xyz="0 0 0" rpy="0 0 1.5708" />
             <!-- <origin xyz="-0.13 0 0" rpy="0 0 0" /> -->
             <material name="yellow">
                 <color rgba="1.0 1.0 1.0 0.9" />
@@ -266,85 +266,29 @@
     
     <xacro:include filename="$(find carsim)/urdf/racecar.gazebo" />
 
-
-    <link name="shelf">
-        <visual>
-        <geometry>
-            <box size="0.05 0.05 0.1"/>  <!-- 架子的尺寸 -->
-        </geometry>
-        <material name="blue"/>
+    <link name="lida_rod">
+    	<visual>
+	    <origin xyz="0 0 0" rpy="0 0 0"/>
+	    <geometry>
+		<cylinder length=".13" radius=".02"/>
+	    </geometry>
+	    <material name="white"/>
         </visual>
-        <collision>
-        <geometry>
-            <box size="0.02 0.02 0.05"/>  <!-- 碰撞体积 -->
-        </geometry>
-        </collision>
+	<collision>
+	    <origin xyz="0 0 0" rpy="0 0 0"/>
+	    <geometry>
+	    <cylinder length=".13" radius=".02"/>
+	    </geometry>
+	</collision>
+	<cylinder_inertial_matrix m=".3" r=".02" h=".4"/>
     </link>
-
-<!-- 定义架子与 base_link 的连接 -->
-    <joint name="shelf_to_base" type="fixed">
-    <parent link="base_link"/>
-    <child link="shelf"/>
-    <origin xyz="0 0 -0.15" rpy="0 0 0"/> <!-- 架子相对 base_link 的位置和姿态 -->
-    </joint>
-
-<!-- 激光雷达 -->
-    <link name="lidar">
-        <visual>
-        <geometry>
-            <cylinder length="0.02" radius="0.02"/> <!-- 激光雷达表示为圆柱 -->
-        </geometry>
-        <material name="grey"/>
-        </visual>
-        <collision>
-        <geometry>
-            <cylinder length="0.01" radius="0.01"/>
-        </geometry>
-        </collision>
-    </link>
-
-<!-- 架子和激光雷达之间的固定连接 -->
-    <joint name="lidar_to_shelf" type="fixed">
-        <parent link="shelf"/>
-        <child link="lidar"/>
-        <origin xyz="0 0 -0.05" rpy="0 0 0"/> <!-- 激光雷达放置在架子中心上方 20 cm -->
-    </joint>
-
-    <!-- Gazebo 插件配置 -->
-    <gazebo>
-        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"/>
+    <gazebo reference="lida_road">
+        <material>Gazebo/Gray</material>
     </gazebo>
-
-    <!-- 激光雷达传感器 -->
-    <gazebo reference="lidar">
-        <sensor type="ray" name="lidar_sensor">
-        <pose>0 0 0 0 0 0</pose>
-        <update_rate>10</update_rate>
-        <ray>
-            <scan>
-            <horizontal>
-                <samples>870</samples> <!-- 水平方向分辨率 -->
-                <resolution>1</resolution>
-                <min_angle>-3.14159</min_angle>
-                <max_angle>3.14159</max_angle>
-            </horizontal>
-            <vertical>
-                <samples>64</samples> <!-- 垂直方向分辨率 -->
-                <min_angle>-0.5236</min_angle>
-                <max_angle>0.5236</max_angle>
-            </vertical>
-            </scan>
-            <range>
-            <min>0.1</min>
-            <max>100.0</max> <!-- 激光测量范围 -->
-            <resolution>0.01</resolution>
-            </range>
-        </ray>
-        <plugin name="gazebo_ros_laser" filename="libgazebo_ros_laser.so">
-            <topicName>/lidar_points</topicName>
-            <frameName>map</frameName>
-        </plugin>
-        </sensor>
-    </gazebo>
+    <joint name="tobox2"  type="fixed">
+	<origin xyz="0 0 0.2" rpy="0 0 0"/>
+	<parent link="base_link"/>
+	<child  link="lida_rod"/>
+    </joint>
 
 </robot>

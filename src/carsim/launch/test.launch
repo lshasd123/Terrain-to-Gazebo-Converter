@@ -31,7 +31,7 @@
   </include>
 
 	<!-- description -->
-	<param name="robot_description" command="$(find xacro)/xacro --inorder '$(find carsim)/urdf/car_model_description.xacro'"/>
+	<param name="robot_description" command="$(find xacro)/xacro --inorder '$(find carsim)/urdf/car_model_lidar_description.xacro'"/>
 
   <!-- spawn car in gazebo-->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
@@ -66,5 +66,8 @@
   
   <!-- cmd2gazebo -->
   <node name="cmdvel2gazebo" pkg="carsim" type="cmdvel2gazebo.py" respawn="true" output="screen"/>
+
+  <!-- pose2gps -->
+  <node name="odom_to_gpswithheading" pkg="carsim" type="convert_odom_to_gpswithheading.py" respawn="true" output="screen"/>
 
 </launch>

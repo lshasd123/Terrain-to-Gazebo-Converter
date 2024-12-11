@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<robot name="arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="$(find carsim)/urdf/car_model_description.xacro"/>
+    <xacro:include filename="$(find carsim)/urdf/VLP-16.urdf.xacro"/>
+	
+    <xacro:property name="lidar_offset_x" value="0" />
+    <xacro:property name="lidar_offset_y" value="0" />
+    <xacro:property name="lidar_offset_z" value="0.2" />
+
+    <robot_base/>
+
+    <!-- lidar -->
+    <joint name="lidar_joint" type="fixed">
+        <origin xyz="${lidar_offset_x} ${lidar_offset_y} ${lidar_offset_z}" rpy="0 0 0" />
+        <parent link="base_link"/>
+        <child link="velodyne_base_link"/>
+    </joint>
+
+    <xacro:VLP-16/>
+    <robot_base_gazebo/>  
+   
+</robot>

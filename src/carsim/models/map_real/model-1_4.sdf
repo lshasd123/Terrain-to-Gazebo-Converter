@@ -8,7 +8,7 @@
         <geometry>
           <mesh>
             <uri>model://map_real/meshes/map_real.dae</uri>
-            <scale>0.6 0.6 0.1</scale>
+            <scale>0.6 0.6 0.6</scale>
           </mesh>
         </geometry>
       </collision>
@@ -16,7 +16,7 @@
         <geometry>
           <mesh>
             <uri>model://map_real/meshes/map_real.dae</uri>
-            <scale>0.6 0.6 0.1</scale>
+            <scale>0.6 0.6 0.6</scale>
           </mesh>
         </geometry>
         <material>

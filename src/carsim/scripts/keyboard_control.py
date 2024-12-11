@@ -103,7 +103,7 @@ def main():
     global max_velocity
     global max_steering_angle
     
-    max_velocity = 1
+    max_velocity = 0.5
     max_steering_angle = 0.5
 
     state_pub = rospy.Publisher(
